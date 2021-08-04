@@ -3,29 +3,31 @@ SHELL = /bin/sh
 CC=gcc
 CFLAGS = -Wall -g
 
-JSON_C_DIR = ./json_1.3/json-c
-CFLAGS += -I$(JSON_C_DIR)/include/json-c
-LDFLAGS = -L$(JSON_C_DIR)/lib -ljson-c
+JSON_C_DIR = ./lib/jsonc_1.3
+CFLAGS += -I$(JSON_C_DIR)
 
-OBJ_DIR = ./obj
-SRC_DIR = ./src
-EXE_DIR = ./exe
 
-SRCS = $(wildcard *.c)
-PROGS = $(patsubst %.c,%,$(SRCS))
+SRC_DIR := src
+OBJ_DIR := obj
 
-all: $(PROGS)
+SRC_FILES := $(wildcard $(SRC_DIR)/*.c)
+OBJ_FILES := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_FILES))
+EXE_FILES := $(patsubst $(SRC_DIR)/%.c,%.out,$(SRC_FILES))
 
-%: %.c
 
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(EXE_DIR)/$@ $<
+all: $(EXE_FILES)
 
-valgrind: $(PROGS)
+$(EXE_FILES): $(OBJ_FILES)	
+	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out
 
-	valgrind $(EXE_DIR)/*
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+valgrind: $(EXE_FILES)
+
+	valgrind $(EXE_DIR)/$*
 
 
 clean:
-	rm -f $(EXE_DIR)/*
-
-
+	rm -f ./$(OBJ_DIR)/*
+	rm -f ./*.out
