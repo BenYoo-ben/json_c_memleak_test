@@ -3,9 +3,9 @@ SHELL = /bin/sh
 CC=gcc
 CFLAGS = -Wall -g
 
-JSON_C_DIR = ./lib/jsonc_1.3
-CFLAGS += -I$(JSON_C_DIR)
-
+JSON_C_DIR = ./lib
+CFLAGS += -I$(JSON_C_DIR)/include
+LDFLAGS = -static -L$(JSON_C_DIR)/lib -ljson-c
 
 SRC_DIR := src
 OBJ_DIR := obj
@@ -18,10 +18,10 @@ EXE_FILES := $(patsubst $(SRC_DIR)/%.c,%.out,$(SRC_FILES))
 all: $(EXE_FILES)
 
 $(EXE_FILES): $(OBJ_FILES)	
-	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out
+	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< $(LDFLAGS)
 
 valgrind: $(EXE_FILES)
 
