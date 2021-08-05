@@ -18,5 +18,5 @@ int main(int argc, char **argv)
 
     json_object_put(dataobj);
 
-    return(0);
+    getchar();
 }
