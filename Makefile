@@ -5,7 +5,7 @@ CFLAGS = -Wall -g
 
 JSON_C_DIR = ./lib
 CFLAGS += -I$(JSON_C_DIR)/include
-LDFLAGS = -L$(JSON_C_DIR)/lib -ljson-c
+LDFLAGS = --static -L$(JSON_C_DIR)/lib -ljson-c
 
 SRC_DIR := src
 OBJ_DIR := obj
@@ -21,7 +21,7 @@ $(EXE_FILES): $(OBJ_FILES)
 	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out $(LDFLAGS) 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c -o $@ $< 
+	$(CC) $(CFLAGS) -c -o $@ $< $(LDFLAGS) 
 
 val: $(EXE_FILES)
 

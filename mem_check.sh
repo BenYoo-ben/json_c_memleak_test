@@ -3,7 +3,7 @@ if [ $# -ne 1 ]; then
 	echo "Usage: $0 executable"
 	exit -1
 fi
-valgrind --leak-check=full \
+LD_PRELOAD="./lib/lib/libjson-c.so.3" valgrind --leak-check=full \
          --show-leak-kinds=all \
          --track-origins=yes \
          --verbose \
