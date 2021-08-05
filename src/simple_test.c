@@ -16,7 +16,5 @@ int main(int argc, char **argv)
 
     printf("myobj = %s\n",json_object_to_json_string(obj));
 
-    json_object_put(dataobj);
-
-    getchar();
+    return(0);
 }

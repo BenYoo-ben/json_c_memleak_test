@@ -1,6 +1,5 @@
-#!bin/sh
-
-if [ $# -ne 1]; then
+#!/bin/sh
+if [ $# -ne 1 ]; then
 	echo "Usage: $0 executable"
 	exit -1
 fi

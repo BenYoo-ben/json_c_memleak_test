@@ -18,10 +18,10 @@ EXE_FILES := $(patsubst $(SRC_DIR)/%.c,%.out,$(SRC_FILES))
 all: $(EXE_FILES)
 
 $(EXE_FILES): $(OBJ_FILES)	
-	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJ_DIR)/$*.o -o $*.out $(LDFLAGS) 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c -o $@ $< $(LDFLAGS)
+	$(CC) $(CFLAGS) -c -o $@ $< 
 
 val: $(EXE_FILES)
 
@@ -30,3 +30,4 @@ val: $(EXE_FILES)
 clean:
 	rm -f ./$(OBJ_DIR)/*.o
 	rm -f ./*.out
+	rm -f ./*.txt
