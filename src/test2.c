@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	struct 	json_object_iter joi;
+	struct 	json_object* joi;
 	printf("TT.\n");
 	
 }

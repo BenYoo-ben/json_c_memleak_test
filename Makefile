@@ -23,11 +23,10 @@ $(EXE_FILES): $(OBJ_FILES)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(LDFLAGS)
 
-valgrind: $(EXE_FILES)
+val: $(EXE_FILES)
 
-	valgrind $(EXE_DIR)/$*
-
+	valgrind -v ./$(EXE_FILES)
 
 clean:
-	rm -f ./$(OBJ_DIR)/*
+	rm -f ./$(OBJ_DIR)/*.o
 	rm -f ./*.out
