@@ -5,7 +5,7 @@ CFLAGS = -Wall -g
 
 JSON_C_DIR = ./lib
 CFLAGS += -I$(JSON_C_DIR)/include
-LDFLAGS = -static -L$(JSON_C_DIR)/lib -ljson-c
+LDFLAGS = -L$(JSON_C_DIR)/lib -ljson-c
 
 SRC_DIR := src
 OBJ_DIR := obj
