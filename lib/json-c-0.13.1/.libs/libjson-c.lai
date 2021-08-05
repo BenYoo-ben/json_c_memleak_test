@@ -5,10 +5,10 @@
 # It is necessary for linking the library.
 
 # The name that we can dlopen(3).
-dlname='libjson-c.so.3'
+dlname='libjson-c.so.4'
 
 # Names of this library.
-library_names='libjson-c.so.3.0.1 libjson-c.so.3 libjson-c.so'
+library_names='libjson-c.so.4.0.0 libjson-c.so.4 libjson-c.so'
 
 # The name of the static archive.
 old_library='libjson-c.a'
@@ -23,9 +23,9 @@ dependency_libs=''
 weak_library_names=''
 
 # Version information for libjson-c.
-current=3
+current=4
 age=0
-revision=1
+revision=0
 
 # Is this an already installed library?
 installed=yes

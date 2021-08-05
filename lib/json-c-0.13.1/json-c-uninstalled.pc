@@ -1,0 +1,11 @@
+prefix=
+exec_prefix=
+libdir=/home/benyoo/json_c_memleak_test/lib/json-c-0.13.1
+includedir=/home/benyoo/json_c_memleak_test/lib/json-c-0.13.1
+
+Name: json
+Description: JSON implementation in C
+Version: 0.13.1
+Requires:
+Libs:  -L/home/benyoo/json_c_memleak_test/lib/json-c-0.13.1 -ljson-c
+Cflags: -I/home/benyoo/json_c_memleak_test/lib/json-c-0.13.1

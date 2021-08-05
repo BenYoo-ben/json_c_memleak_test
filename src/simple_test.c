@@ -6,6 +6,17 @@
 
 int main(int argc, char **argv)
 {
-    
-   printf("size of json_obj : %u\n",sizeof(struct json_object));
+    json_object *obj, *dataobj;
+
+    obj = json_object_new_object();
+    dataobj = json_object_new_object();
+
+    json_object_object_add(dataobj,"test1", json_object_new_int(1));
+    json_object_object_add(obj,"test2",dataobj);
+
+    printf("myobj = %s\n",json_object_to_json_string(obj));
+
+    json_object_put(dataobj);
+
+    return(0);
 }
