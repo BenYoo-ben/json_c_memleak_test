@@ -3,8 +3,8 @@
 
 int main(void)
 {
+    int *a = malloc(sizeof(int) * 1000);
 
-    int *a = malloc(sizeof(int));
+    printf("hi");
 
-    printf("hello");
 }

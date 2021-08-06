@@ -1,20 +1,30 @@
 #include <stdio.h>
+
 #include <json.h>
- 
-//Code is from:
-//https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=yababies&logNo=220029067066
 
-int main(int argc, char **argv)
+
+int main(void)
 {
-    json_object *obj, *dataobj;
+	struct json_object *jso = json_object_new_object();
 
-    obj = json_object_new_object();
-    dataobj = json_object_new_object();
+#ifdef _json_object_private_h_
 
-    json_object_object_add(dataobj,"test1", json_object_new_int(1));
-    json_object_object_add(obj,"test2",dataobj);
+printf("DEFINED.\n");
 
-    printf("myobj = %s\n",json_object_to_json_string(obj));
+#endif
+/*
+	if(!jso)
+		printf("json null\n");
+	
+	if(!(jso->c_object))
+		printf("lh table null\n");
 
-    return(0);
+	if(!(jso->c_object->table))
+		printf("lh table->table null\n");
+
+*/
+	
+
+//	json_object_put(jso);
+
 }

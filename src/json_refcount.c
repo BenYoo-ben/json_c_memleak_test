@@ -79,7 +79,7 @@ int main() {
 	// We can safely put all of these objects
 	json_object_put(obj1);
 	json_object_put(obj2);
-	//json_object_put(res);
+	json_object_put(res);
 	printf("not freeing last array.\n");
 
 	return 0;
