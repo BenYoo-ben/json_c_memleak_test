@@ -25,9 +25,9 @@ valgrind --leak-check=full \
 
 echo "
 " 
-grep HEAP -A 5 ./valgrind-out.txt
+grep HEAP -A 5 ./$1.txt
 
 echo 
-grep LEAK -A 5 ./valgrind-out.txt
+grep LEAK -A 5 ./$1.txt
 exit 0
 
