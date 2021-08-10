@@ -1,6 +1,16 @@
+/*
+ * From: stackoverflow.com
+ *
+ * if FIX is defined = no memory leak
+ * undefine it to see where memory leakage happens
+ */
+#define FIX
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "json.h"
+
+
 struct json_object * parse_object;
 void init() {
 
@@ -15,7 +25,15 @@ void test_json() {
     json_object_object_get_ex(obj1, "array1", &arr1);
     int size = json_object_array_length(arr1);
     printf("size = %d \n", size);
-    json_object_put(obj1);  
+    /*
+     * @ERROR #1: object_get_ex, does not increment json_object->_ref_count.
+     * 			  So following json_object_put(obj1) actually does free memory alocated for parse_object
+     * 			  Plus, test_json() function is called multiple times in main().
+     * 			  Accessing previously freed memory = undefined behavior.
+     */
+#ifndef FIX
+    json_object_put(obj1);
+#endif
 }
 
 int main(int argc, char const *argv[]) {
@@ -25,6 +43,8 @@ int main(int argc, char const *argv[]) {
     while(++j < max) {
        test_json();
     }
-   // json_object_put(parse_object);
+#ifdef FIX
+json_object_put(parse_object);
+#endif
     return 0;
 }

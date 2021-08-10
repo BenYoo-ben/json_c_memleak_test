@@ -1,10 +1,15 @@
+/*
+ * From: byongjin.yoo
+ *
+ * if FIX is defined = no memory leak
+ * undefine it to see where memory leakage happens
+ */
+
+#define FIX
+
 #include <stdio.h>
 #include "json.h"
-/*
- * this prgoram is to show how ref_count is incremented when json_object_get is called.
- *
- *
- */
+
 
 int main(void)
 {
@@ -22,25 +27,20 @@ int main(void)
 	json_object_array_add(json_array_1,json_obj);
 
 
-	system("free");
 
 	json_object *json_array_1_copy = json_object_get(json_array_1);
 	printf("calling json_object_get...(ref_count +1)\n");
 
-	system("free");
-
-	//printf("json_array_1->ref_count = %d\n",json_array_1->_ref_count);
 
 	json_object_put(json_array_1);
 	printf("json_object_put(json_array_1) called...\n");
 
 
-	system("free");
 
-	printf("(json_array_1) is not freed, ref_count >1");
-
+	printf("(json_array_1) is not freed, ref_count >1\n");
+#ifdef FIX
 	json_object_put(json_array_1_copy);
-	printf(("json_array_1_copy) is freed, ref_count =0"));
-
+	printf(("json_array_1_copy) is freed, ref_count =0\n"));
+#endif
 
 }

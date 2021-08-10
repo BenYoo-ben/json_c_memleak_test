@@ -6,7 +6,7 @@
  * undefine it to see where memory leakage happens
  */
 
-//#define FIX
+#define FIX
 
 
 #include <stdio.h>
@@ -50,10 +50,12 @@ int main()
     json_object_array_add(jarray, jstring2);
     json_object_array_add(jarray, jstring3);
     //json_object_array_add(jarray, jstring4);
-    json_object_array_put_idx(jarray, 4, jstring4);
+
+    json_object_array_put_idx(jarray, 3, jstring4);
+     // json_object_put(jstring4);
 
     // create a json object to be included above outer object
-    json_object *jinner_object = json_object_new_object();
+   json_object *jinner_object = json_object_new_object();
     // create a json integer
     json_object *jint2 = json_object_new_int(10);
 
@@ -73,7 +75,18 @@ int main()
 
     system("free");
 
+    /*
+     *  @OPTIMIZE: json_object_put, free all memory allocated by json_object itself
+     *  			plus all the json_objects below it.
+     *
+     *  SHORT: example calls unnecessary free calls too much
+     */
+
+
     // delete all memory allocated in heap region
+
+#ifndef FIX
+
     json_object_put(jstring);
     json_object_put(jint1);
     json_object_put(jdouble);
@@ -87,6 +100,7 @@ int main()
 
     json_object_put(jarray);
     json_object_put(jinner_object);
+#endif
     json_object_put(jobj);
 
     system("free");

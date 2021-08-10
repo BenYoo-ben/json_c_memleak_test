@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include "json.h"
 
-#define TREE_DEPTH 10
+#define TREE_DEPTH 1000
 
 /*
- * This program intends to make a json structure that has arrays inside arrays inside arrays ...
+ * Prove that very deep structured json can be set free with only one json_object_put.
  */
 
 int main(void) {
@@ -37,8 +37,6 @@ int main(void) {
 
 	}
 
-//	printf("%s\n",json_object_to_json_string_ext(array_top,0));
-
 	printf("copied pointer by json_object_object_get_ex points to : %p\n",obj_obj_get_ex);
 	printf("which has value of \n%s\n\n",json_object_to_json_string_ext(obj_obj_get_ex,0));
 
@@ -47,11 +45,6 @@ int main(void) {
 	json_object_put(object_top);
 	printf("json_object_put on tree's root.\n");
 
-/*	printf("copied pointer by json_object_object_get_ex points to : %p\n",obj_obj_get_ex);
-	printf("which has value of \n%s\n\n",json_object_to_json_string_ext(obj_obj_get_ex,0));
-*/
-
-	//json_object_object_add(obj_obj_get_ex,"ADDING",json_object_new_object());
 
 
 

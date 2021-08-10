@@ -1,8 +1,7 @@
 /*
  * From: https://stackoverflow.com/questions/8746155/memory-leak-using-json-c
- */
-
-/* if FIX is defined = no memory leak
+ *
+ * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
 
