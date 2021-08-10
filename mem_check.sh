@@ -5,7 +5,18 @@ if [ $# -ne 1 ]; then
 fi
 echo "
 "
-LD_PRELOAD="./lib/lib/libjson-c.so.3" valgrind --leak-check=full \
+
+echo "LD_LIBRARY_PATH = $LD_LIBRARY_PATH"
+
+echo "export..."
+
+export LD_LIBRARY_PATH=./lib/lib
+
+echo "LD_LIBRARY_PATH = $LD_LIBRARY_PATH"
+
+echo "
+"
+valgrind --leak-check=full \
          --show-leak-kinds=all \
          --track-origins=yes \
          --verbose \

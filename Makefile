@@ -4,8 +4,8 @@ CC=gcc
 CFLAGS = -Wall -g 
 
 JSON_C_DIR = ./lib
-CFLAGS += -I$(JSON_C_DIR)/include
-LDFLAGS = -L$(JSON_C_DIR)/lib -ljson-c
+CFLAGS += -I $(JSON_C_DIR)/include
+LDFLAGS = -L $(JSON_C_DIR)/lib -ljson-c
 
 SRC_DIR := src
 OBJ_DIR := obj

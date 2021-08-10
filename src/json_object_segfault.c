@@ -6,6 +6,7 @@ void init() {
 
     char buffer_file[] = "{ \"object\": {\"array1\": [1, 2, 3], \"array2\": [4, 5, 6] } }";
     parse_object = json_tokener_parse(buffer_file);
+    printf("inside : %s\n",json_object_to_json_string(parse_object));
 
 }
 void test_json() {
