@@ -17,6 +17,7 @@ int api_device_info_get(char *path, char *body, int blen, FILE *stream,
 	char ipv4SubnetStrBuf[11] = { 0 };
 	char tmpStr[32] = { 0, };
 
+
 	val = json_object_new_object();
 
 	/*if (gddbGetInt("/airfores/singlesignon") == 1)

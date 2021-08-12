@@ -18,8 +18,8 @@ int api_upgrade_remote_get(char *path, FILE *stream)
       set_json_str(val, "url", "remoteUpgradeObj->URL ");
       set_json_str(val, "username", "remoteUpgradeObj->username");
       set_json_str(val, "password", "remoteUpgradeObj->password");
-      set_json_int(val, "port", "remoteUpgradeObj->port");
-      set_json_int(val, "meta_last", "remoteUpgradeObj->metaTimestamp");
+      set_json_int(val, "port", 1552);
+      set_json_int(val, "meta_last", 294581);
       set_json_str(val, "meta_version", "remoteUpgradeObj->metaVersion");
 
       //cmsObj_free((void **) &remoteUpgradeObj);
