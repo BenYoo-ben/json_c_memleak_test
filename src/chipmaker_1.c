@@ -1,12 +1,15 @@
 /*
  * From: https://chipmaker.tistory.com/entry/jsonc-simple-generator-json-ojbect
+ * description:
+ * An example json-c code found in the above website.
+ * Too many json_object_put was called.
  */
 
 /* if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
 
-#define FIX
+//#define FIX
 
 
 #include <stdio.h>
@@ -51,6 +54,7 @@ int main()
     json_object_array_add(jarray, jstring3);
     //json_object_array_add(jarray, jstring4);
 
+    //valgrind --> extra free happens here, 3rd element doesn't exist = empty free
     json_object_array_put_idx(jarray, 3, jstring4);
      // json_object_put(jstring4);
 
@@ -79,7 +83,7 @@ int main()
      *  @OPTIMIZE: json_object_put, free all memory allocated by json_object itself
      *  			plus all the json_objects below it.
      *
-     *  SHORT: example calls unnecessary free calls too much
+     *  SHORT: this example calls unnecessary free calls too much
      */
 
 

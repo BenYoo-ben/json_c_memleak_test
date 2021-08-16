@@ -1,10 +1,18 @@
+/*
+ *  author: byong.yoo
+ *  description:
+ *  to check if valgrind is functional.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(void)
 {
-    int *a = malloc(sizeof(int) * 1000);
+    char *a = malloc(sizeof(char) * 100);
 
-    printf("hi");
+    a[100-1] = '\0';
+
+    exit(0);
 
 }

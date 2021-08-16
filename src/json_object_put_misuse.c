@@ -1,10 +1,13 @@
 /*
  * From: stackoverflow.com
+ * description:
+ * An example I found from stackoverflow.com.
+ * json_object_put is used wrong considering the architecture of json-c lib.
  *
  * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
-#define FIX
+//#define FIX
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,8 +30,9 @@ void test_json() {
     printf("size = %d \n", size);
     /*
      * @ERROR #1: object_get_ex, does not increment json_object->_ref_count.
-     * 			  So following json_object_put(obj1) actually does free memory alocated for parse_object
-     * 			  Plus, test_json() function is called multiple times in main().
+     * 			  So following json_object_put(obj1) actually does free memory allocated for obj1
+     *
+     * 			  test_json() function is called multiple times in main().
      * 			  Accessing previously freed memory = undefined behavior.
      */
 #ifndef FIX

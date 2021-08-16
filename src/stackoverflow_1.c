@@ -1,5 +1,8 @@
 /*
  * From: https://stackoverflow.com/questions/8746155/memory-leak-using-json-c
+ * description:
+ * This code had some memory leaks, by losing reference to some json_objects.
+ *
  *
  * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
@@ -22,7 +25,7 @@ int main(void) {
 	root_object = new_obj;
 #endif
 
-	printf("structure is \n%s\n", json_object_to_json_string(new_obj));
+	printf("json structure is \n%s\n", json_object_to_json_string(new_obj));
 
 	/*
 	 * @LEAKAGE #1, previous reference to json_object root is lost.
@@ -39,7 +42,8 @@ int main(void) {
 	/*
 	 * @LEAKAGE #2, losing reference to root + object before(Line 30)
 	 */
-	new_obj = json_object_object_get(new_obj, "maths"); // [stackvoerflow] I m re-using new_obj, without free it?
+	new_obj = json_object_object_get(new_obj, "maths");
+	// [stackvoerflow] I m re-using new_obj, without free it?
 	if (NULL == new_obj) {
 		printf("\nsport not found in JSON");
 		return 0;
@@ -51,7 +55,7 @@ int main(void) {
 	json_object_put(root_object);
 #else
 	/*
-	 * @LEAKAGE #3, this call only free, json_object acquired from Line 41.
+	 * @LEAKAGE #3, this call only free json_object acquired from Line 45.
 	 */
 	json_object_put(new_obj);
 #endif

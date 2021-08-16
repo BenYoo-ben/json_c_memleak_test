@@ -5,9 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "json_inttypes.h"
-#include "json_object.h"
-#include "json_tokener.h"
+#include "json.h"
 
 int main()
 {

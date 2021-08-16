@@ -1,11 +1,14 @@
 /*
  * From: https://m.blog.naver.com/yababies/220067117640
+ * description:
+ * example program using json-c, little correction on object_put.
+ *
  *
  * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
 
-#define FIX
+//#define FIX
 
 #include <stdio.h>
 #include "json.h"

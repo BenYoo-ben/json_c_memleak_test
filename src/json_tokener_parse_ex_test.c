@@ -1,3 +1,9 @@
+/*
+ *  author: byong.yoo
+ *  description:
+ *  testing how to use json_tokener_parse_ex correctly.
+ */
+
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -21,17 +27,16 @@ int main(void)
 
 	struct json_object *jobj = json_tokener_parse_ex(jt,buffer,read_chars_count);
 
+/*
+ *  json_tokener is not freed automatically in json_tokener_parse_ex.
+ *  programmer should free json_tokener after calling json_tokener_parse_ex.
+ */
 	json_tokener_free(jt);
 
 
 	printf("What's inside the json:\n%s\n",json_object_to_json_string(jobj));
 	printf("Sign : %d\n",jt->err);
 
-	//json_object_put(jobj);
-
-
-
-
-
+	json_object_put(jobj);
 
 }

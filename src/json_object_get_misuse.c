@@ -1,11 +1,16 @@
 /*
- * From: byongjin.yoo
+ * author: byongjin.yoo
+ * description:
+ * json_object_get is to get reference of a json_object.
+ * but it also increments the _ref_count field of the json_object.
+ * when json_object_put is called, first it decrements the _ref_count of the object passed
+ * and when the _ref_count is not 0, the memory allocated won't be freed.
  *
  * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
 
-#define FIX
+//#define FIX
 
 #include <stdio.h>
 #include "json.h"

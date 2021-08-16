@@ -5,7 +5,7 @@
  * undefine it to see where memory leakage happens
  */
 
-//#define FIX
+#define FIX
 
 #include <stdio.h>
 #include <string.h>

@@ -1,11 +1,15 @@
 /*
- * From: byongjin.yoo
+ * author: byongjin.yoo
+ * description:
+ * must be careful when using json objects in function.
+ * programmer must be aware that reference to allocated memory can be lost
+ * when json-c is used in functions.
  *
  * if FIX is defined = no memory leak
  * undefine it to see where memory leakage happens
  */
 
-#define FIX
+//#define FIX
 
 #include <stdio.h>
 
@@ -28,7 +32,8 @@ int ReadFromFileGetSport(char *filename)
 
 	/*
 	 * @LEAKAGE #1: if quiz->sport is not found in the above statement,
-	 * 				tmp is not freed and can not be in the future since there's no reference to it.
+	 * tmp is not freed and can not be in the future since there's no reference to it.
+	 *
 	 */
 
 #ifndef FIX

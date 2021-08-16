@@ -1,7 +1,13 @@
+/*
+ * author: byong.yoo
+ * description:
+ * json_object_deep_copy, makes exact copy of original json_object including its child objects.
+ * it allocated memory separately too, so copy is not reference to original.
+ */
 #include <stdio.h>
 #include "json.h"
 
-#define FIX
+//#define FIX
 
 int main(void){
 	
@@ -31,7 +37,7 @@ int main(void){
 
 	printf("Copied :\n%s\n\n",json_object_to_json_string(copy_root));
 
-	
+	//copy is not reference, so object_put must be called. If not = memory leak.
 #ifdef FIX
 	json_object_put(copy_root);
 #endif

@@ -1,4 +1,6 @@
 /*
+ * From: json-c/example
+ *
  * Reference counting example. The idea is to make a json_object res composed from
  * parts of obj1 and obj2.
  *
@@ -80,7 +82,6 @@ int main() {
 	json_object_put(obj1);
 	json_object_put(obj2);
 	json_object_put(res);
-	printf("not freeing last array.\n");
 
 	return 0;
 }
